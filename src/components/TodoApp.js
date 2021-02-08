@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Container } from 'reactstrap';
+import { Container} from 'reactstrap';
 
 import TodoInput from './TodoInput';
 import TodoContainer from './TodoContainer';
+import Alerts from './Alerts';
+import Header from './Header';
+import Footer from './Footer';
 
 import {container} from './styles';
 
@@ -11,6 +14,7 @@ export default function TodoApp() {
     const [title, setTitle] = useState('');
     const [isEdit, setIsEdit] = useState(false);
     const [editID, setEditID] = useState(null);
+    const [alert, setAlert] = useState({show: false, msg: '', type: ''});
     const [list, setList] = useState(() => {
         let list = localStorage.getItem('list');
         if(list) {
@@ -35,14 +39,20 @@ export default function TodoApp() {
         setList([]);
     }
 
+    const showAlert = (show=false, msg='', type='') => {
+        setAlert({show, msg, type});
+    }
     useEffect(() => {
         localStorage.setItem('list', JSON.stringify(list));
     }, [list]);
 
     return (
-        <>
+        <>  
+            <Header/>
             <Container style={container}>
-                <TodoInput 
+                <Alerts alert={alert} setAlert={setAlert}/>
+                <TodoInput
+                    showAlert={showAlert}
                     title={title} 
                     setTitle={setTitle} 
                     list={list} 
@@ -51,9 +61,17 @@ export default function TodoApp() {
                     editID={editID} 
                     setIsEdit={setIsEdit} 
                     setEditID={setEditID}
+                    setAlert={setAlert}
                 />
-                <TodoContainer list={list} completeTodo={completeTodo} editTodo={editTodo} completeAll={completeAll}/>
+                <TodoContainer 
+                    list={list} 
+                    completeTodo={completeTodo} 
+                    editTodo={editTodo} 
+                    completeAll={completeAll}
+                    showAlert={showAlert}
+                />
             </Container>
+            <Footer/>
         </>
     )
 }

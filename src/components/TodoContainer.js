@@ -9,7 +9,7 @@ import {btn} from './styles';
 
 import { row, rowItem, todoItem, btnClear } from './styles';
 
-export default function TodoContainer({list, completeTodo, editTodo, completeAll}) {
+export default function TodoContainer({list, completeTodo, editTodo, completeAll, showAlert}) {
 
     return (
         <>
@@ -21,7 +21,14 @@ export default function TodoContainer({list, completeTodo, editTodo, completeAll
                             <div style={todoItem}>
                                 <h5>{title}</h5>
                                 <div>
-                                    <Button style={btn} color='success' outline onClick={() => completeTodo(id)}><Check/></Button>
+                                    <Button 
+                                        style={btn} 
+                                        color='success' 
+                                        outline 
+                                        onClick={() => {
+                                            completeTodo(id);
+                                            showAlert(true, 'Good job !', 'success');
+                                        }}><Check/></Button>
                                     <Button color='info' outline onClick={() => editTodo(id)}><Edit/></Button>
                                 </div>
                             </div>
@@ -29,7 +36,16 @@ export default function TodoContainer({list, completeTodo, editTodo, completeAll
                     </Row>
                 )
             })}
-            {list.length > 2 && <Button block style={btnClear} color='success' onClick={completeAll}>Complete All</Button>}
+            {list.length > 2 && 
+                <Button 
+                    block 
+                    style={btnClear} 
+                    color='success' 
+                    onClick={() => {
+                        completeAll();
+                        showAlert(true, 'Wonderful !!!', 'success');
+                    }}
+                >Complete All</Button>}
             
         </>
     )
