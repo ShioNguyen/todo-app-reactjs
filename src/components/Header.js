@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <>
             <Navbar dark className='bg-primary' style={{position: 'fixed', width: '100vw',}}>
-                <NavbarBrand className='m-auto'>Todo App</NavbarBrand>
+                <NavbarBrand className='m-auto'>TODO APP</NavbarBrand>
             </Navbar>
         </>
     )
