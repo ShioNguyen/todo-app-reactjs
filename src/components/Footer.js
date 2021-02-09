@@ -1,10 +1,12 @@
 import React from 'react';
 
+import {footer, footerTtitle} from './styles';
+
 export default function Footer() {
     return (
-        <div  style={{position: 'fixed', width: '100vw', bottom: '0'}}>
+        <div style={footer}>
             <hr/>
-            <p style={{textAlign: 'center', color: '#010101', fontSize: '1rem', fontWeight: 'lighter'}}>&copy; ShioNguyen</p>
+            <p style={footerTtitle}>&copy; ShioNguyen</p>
         </div>
     )
 }

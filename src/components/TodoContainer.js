@@ -24,12 +24,17 @@ export default function TodoContainer({list, completeTodo, editTodo, completeAll
                                     <Button 
                                         style={btn} 
                                         color='success' 
-                                        outline 
                                         onClick={() => {
                                             completeTodo(id);
                                             showAlert(true, 'Good job !', 'success');
-                                        }}><Check/></Button>
-                                    <Button color='info' outline onClick={() => editTodo(id)}><Edit/></Button>
+                                        }}
+
+                                    ><Check/></Button>
+                                    <Button 
+                                        style={btn} 
+                                        color='info' 
+                                        onClick={() => editTodo(id)}
+                                    ><Edit/></Button>
                                 </div>
                             </div>
                         </div>
