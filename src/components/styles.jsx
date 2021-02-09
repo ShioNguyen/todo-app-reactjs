@@ -14,7 +14,6 @@ module.exports = {
     },
 
     footer : {
-        backgroundColor: '#fff',
         position: 'fixed', 
         width: '100vw', 
         bottom: '0',
