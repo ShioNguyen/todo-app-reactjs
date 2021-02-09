@@ -3,7 +3,7 @@ import { Button, Form, Input, InputGroup, InputGroupAddon, Row } from 'reactstra
 
 import { row, rowItem } from './styles';
 
-export default function TodoInput({title, setTitle, list, setList, isEdit, editID, setIsEdit, setEditID, setAlert, showAlert}) {
+export default function TodoInput({title, setTitle, list, setList, isEdit, editID, setIsEdit, setEditID, showAlert, resWidth}) {
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
@@ -32,7 +32,7 @@ export default function TodoInput({title, setTitle, list, setList, isEdit, editI
     return (
         <>
             <Row style={row}>
-                <Form style={rowItem} onSubmit={handleOnSubmit}>
+                <Form style={{width: resWidth > 576 ? '50%' : '90%'}} onSubmit={handleOnSubmit}>
                     <InputGroup>
                         <Input 
                             value={title}

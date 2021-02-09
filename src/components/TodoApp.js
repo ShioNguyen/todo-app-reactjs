@@ -9,12 +9,16 @@ import Footer from './Footer';
 
 import {container} from './styles';
 
+
 export default function TodoApp() {
 
+    const {innerWidth} = window;
+    
     const [title, setTitle] = useState('');
     const [isEdit, setIsEdit] = useState(false);
     const [editID, setEditID] = useState(null);
     const [alert, setAlert] = useState({show: false, msg: '', type: ''});
+    const [width, setWidth] = useState(innerWidth);
     const [list, setList] = useState(() => {
         let list = localStorage.getItem('list');
         if(list) {
@@ -42,10 +46,21 @@ export default function TodoApp() {
     const showAlert = (show=false, msg='', type='') => {
         setAlert({show, msg, type});
     }
+
+    const handleReize = () => {
+        window.addEventListener('resize', () => {
+            setWidth(window.innerWidth);
+        });
+    }
+
     useEffect(() => {
         localStorage.setItem('list', JSON.stringify(list));
     }, [list]);
-
+    
+    useEffect(() => {
+        handleReize();
+    })
+    
     return (
         <>  
             <Header/>
@@ -62,6 +77,7 @@ export default function TodoApp() {
                     setIsEdit={setIsEdit} 
                     setEditID={setEditID}
                     setAlert={setAlert}
+                    resWidth={width}
                 />
                 <TodoContainer 
                     list={list} 
@@ -69,6 +85,7 @@ export default function TodoApp() {
                     editTodo={editTodo} 
                     completeAll={completeAll}
                     showAlert={showAlert}
+                    resWidth={width}
                 />
             </Container>
             <Footer/>

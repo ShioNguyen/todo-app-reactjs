@@ -13,10 +13,6 @@ module.exports = {
         justifyContent: 'center',
     },
 
-    rowItem: {
-        width: '60%',
-    },
-
     todoItem: {
         display: 'flex',
         justifyContent: 'space-between',
